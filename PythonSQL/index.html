@@ -5,7 +5,7 @@
 <title>Обработка данных форм</title>
 </head>
 <body>
-    <h3>Выберите таблицу:</h3>
+    <h3>Добавить в таблицу:</h3>
     <form action="goods.html">
         <input type="submit" value="GOODS">
     </form>
@@ -13,6 +13,16 @@
         <input type="submit" value="ORDERS">
     </form>
     <form action="orders_goods.html">
+        <input type="submit" value="ORDERS_GOODS">
+    </form>
+    <h3>Посмотреть таблицу:</h3>
+    <form action="\cgi-bin\check_goods.py">
+        <input type="submit" value="GOODS">
+    </form>
+    <form action="\cgi-bin\check_orders.py">
+        <input type="submit" value="ORDERS">
+    </form>
+    <form action="\cgi-bin\check_orders_goods.py">
         <input type="submit" value="ORDERS_GOODS">
     </form>
 </body>
