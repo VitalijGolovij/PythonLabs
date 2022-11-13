@@ -1,5 +1,5 @@
 import sqlite3
-
+import xml.etree.ElementTree as ET
 def createdb(db, cursor):
 
     create_table = """
@@ -116,11 +116,45 @@ def filldb(db, cursor):
         cursor.execute(value)
     db.commit()
 
+def createXml (rows):
+    root = ET.Element("data")
+    for row in rows:
+        author = ET.SubElement(root, "goods")
+        id_a = ET.SubElement(author, "id")
+        name = ET.SubElement(author, "frim")
+        surname = ET.SubElement(author, "name")
+        birtday = ET.SubElement(author, "is_photo")
+        cit = ET.SubElement(author, "is_video")
+        cost = ET.SubElement(author, "cost")
+        id_a.text=str(row[0])
+        name.text=str(row[1])
+        surname.text=str(row[2])
+        birtday.text=str(row[3])
+        cit.text=str(row[4])
+        cost.text = str(row[5])
+
+    message=ET.tostring(root,"utf 8")
+    doc = '<?xml version="1.0" encoding="UTF-8"?>' + message.decode("utf-8")
+
+    tree=ET.ElementTree(root)
+    tree.write("goods.xml",encoding="utf 8")
+
+def readXMLtoGOODS(xmlfile,db,cursor):
+    tree = ET.parse(xmlfile)
+    root = tree.getroot()
+
+    for val_r in root:
+        cursor.execute(f"INSERT INTO GOODS (firm, name, is_photo, is_video, cost) VALUES (?, ?, ?, ?, ?);", (
+        val_r[0].text, val_r[1].text, int(val_r[2].text), int(val_r[3].text), float(val_r[4].text)))
+    db.commit()
+
+
 def main():
     db = sqlite3.connect('cams.db')
     cursor = db.cursor()
     #createdb(db, cursor)
     #filldb(db,cursor)
+
 
     for val in cursor.execute("SELECT * FROM GOODS"):
         print(val)
@@ -137,6 +171,7 @@ def main():
     FROM ORDERS_GOODS INNER JOIN GOODS ON GOODS.product_id = ORDERS_GOODS.product_id) 
     GROUP BY order_id"""):
         print(val)
+
 
 if __name__ == "__main__":
     main()
