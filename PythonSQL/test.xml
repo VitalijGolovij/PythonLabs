@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<catalog>
+   <bus>
+      <number>x777xx</number>
+      <brend>lada</brend>
+   </bus>
+   <bus>
+      <number>x888xx</number>
+      <brend>volvo</brend>
+   </bus>
+</catalog>

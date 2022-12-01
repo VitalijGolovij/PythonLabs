@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<h1>ORDERS</h1>
+<p>Add data:</p>
+<form method="POST">
+  {% csrf_token %}
+    <table>
+      {{ form }}
+    </table>
+  <input type="submit" value="Send" >
+</form>
+<table class="zigzag">
+  <thead>
+    <tr>
+      <th class="header">id</th>
+      <th class="header">date</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for row in list %}
+      <tr>
+        {% for val in row %}
+          <td>{{ val }}</td>
+        {% endfor %}
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</html>

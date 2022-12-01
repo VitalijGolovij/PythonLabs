@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tables</title>
+</head>
+<body>
+    <div>
+        <a href="http://127.0.0.1:8000/goods/"><h2>GOODS table</h2></a>
+        <p>The table displays data about the store's products, their characteristics and cost.</p>
+        <table class="zigzag">
+          <thead>
+            <tr>
+              <th class="header">id</th>
+              <th class="header">firm</th>
+              <th class="header">name</th>
+              <th class="header">is_photo</th>
+              <th class="header">is_video</th>
+              <th class="header">cost</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for row in goods_list %}
+              <tr>
+                {% for val in row %}
+                  <td>{{ val }}</td>
+                {% endfor %}
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        <a href="http://127.0.0.1:8000/goods/">watch more...</a>
+    </div>
+    <div>
+        <a href="http://127.0.0.1:8000/orders/"><h2>ORDERS table</h2></a>
+        <p>The table displays the data about the orders of the store. It includes the numbering and date of the order.</p>
+        <table class="zigzag">
+          <thead>
+            <tr>
+              <th class="header">id</th>
+              <th class="header">date</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for row in orders_list %}
+              <tr>
+                {% for val in row %}
+                  <td>{{ val }}</td>
+                {% endfor %}
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        <a href="http://127.0.0.1:8000/orders/">watch more...</a>
+    </div>
+    <div>
+        <a href="http://127.0.0.1:8000/orders_goods/"><h2>ORDERS-GOODS table</h2></a>
+        <p>The table is an auxiliary for comparing the order and the ordered goods. It associates the order number with the product number as well as the quantity.</p>
+        <table class="zigzag">
+          <thead>
+            <tr>
+              <th class="header">order_id</th>
+              <th class="header">product_id</th>
+              <th class="header">cost</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for row in orders_goods_list %}
+              <tr>
+                {% for val in row %}
+                  <td>{{ val }}</td>
+                {% endfor %}
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        <a href="http://127.0.0.1:8000/orders_goods/">watch more...</a>
+    </div>
+</body>
+</html>

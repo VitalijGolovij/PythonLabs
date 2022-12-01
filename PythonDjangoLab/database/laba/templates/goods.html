@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<h1>GOODS</h1>
+<p>Add data:</p>
+<form method="POST">
+  {% csrf_token %}
+    <table>
+      {{ form }}
+    </table>
+  <input type="submit" value="Send" >
+</form>
+<table class="zigzag">
+  <thead>
+    <tr>
+      <th class="header">id</th>
+      <th class="header">firm</th>
+      <th class="header">name</th>
+      <th class="header">is_photo</th>
+      <th class="header">is_video</th>
+      <th class="header">cost</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for row in list %}
+      <tr>
+        {% for val in row %}
+          <td>{{ val }}</td>
+        {% endfor %}
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</html>
